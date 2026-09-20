@@ -28,10 +28,15 @@ def main():
 
               #add to the expenses
               expenses.append(expense)
+              #view all expenses
          elif (option == 2):
-              print("View all expenses")
+              for expense in expenses:
+                   print(expense)
+                   #calculate all spending
          elif (option == 3):
-              print("Calculate total expenses")
+              amount = list(map(lambda expense:expense["amount"],expenses))
+              total_expense = sum(amount)
+              print(f"The total amount of the expense is {total_expense}")
          elif (option == 4):
               print("Calculate by category")
          elif (option == 5):
@@ -43,7 +48,7 @@ def main():
               break
          else:
               print("Invalid input")
-              
+
     print(expenses)
 
 main()
