@@ -38,7 +38,15 @@ def main():
               total_expense = sum(amount)
               print(f"The total amount of the expense is {total_expense}")
          elif (option == 4):
-              print("Calculate by category")
+              total_category = {}
+              for expense in expenses:
+                   category = expense["category"]
+                   amount = expense["amount"]
+
+                   if category in total_category:
+                        total_category[category] += amount
+                   else:
+                        total_category[category] = amount
          elif (option == 5):
               print("Delete an expense")
          elif (option == 6):
