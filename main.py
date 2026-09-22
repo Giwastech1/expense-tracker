@@ -49,7 +49,7 @@ def main():
                         total_category[category] = amount
                #print total category and total amount of category
               for category, total in total_category.items():
-                   print(f"Category:{category} Total:{total}")
+                   print(f"{category}: {total}")
          elif (option == 5):
               print("Delete an expense")
          elif (option == 6):
