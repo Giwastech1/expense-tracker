@@ -30,8 +30,8 @@ def main():
               expenses.append(expense)
               #view all expenses
          elif (option == 2):
-              for expense in expenses:
-                   print(expense)
+              for index_num,expense in enumerate(expenses,start=1):
+                   print(index_num,expense)
                    #calculate all spending
          elif (option == 3):
               amount = list(map(lambda expense:expense["amount"],expenses))
@@ -59,7 +59,5 @@ def main():
               break
          else:
               print("Invalid input")
-
-    print(expenses)
 
 main()
