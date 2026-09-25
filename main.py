@@ -35,6 +35,7 @@ def main():
                    #calculate all spending
          elif (option == 3):
               amount = list(map(lambda expense:expense["amount"],expenses))
+              print(amount)
               total_expense = sum(amount)
               print(f"The total amount of the expense is {total_expense}")
          elif (option == 4):
@@ -51,7 +52,9 @@ def main():
               for category, total in total_category.items():
                    print(f"{category}: {total}")
          elif (option == 5):
-              print("Delete an expense")
+              option_to_delete = int(input("Enter a number to delete: "))
+              if option_to_delete:
+                   expenses.pop(option_to_delete)
          elif (option == 6):
               print("Saved to file")
          elif (option == 7):
