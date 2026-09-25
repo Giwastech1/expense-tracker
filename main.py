@@ -9,8 +9,7 @@ def main():
          print("3. Calculate total spending")
          print("4. Calculate spending by category")
          print("5. Delete an expense")
-         print("6. Save expenses to a file")
-         print("7. Exit")
+         print("6. Exit")
          #options selection and action
          option = int(input("Enter an option: "))
          if (option == 1):
@@ -35,7 +34,6 @@ def main():
                    #calculate all spending
          elif (option == 3):
               amount = list(map(lambda expense:expense["amount"],expenses))
-              print(amount)
               total_expense = sum(amount)
               print(f"The total amount of the expense is {total_expense}")
          elif (option == 4):
@@ -53,8 +51,10 @@ def main():
                    print(f"{category}: {total}")
          elif (option == 5):
               option_to_delete = int(input("Enter a number to delete: "))
-              if option_to_delete:
-                   expenses.pop(option_to_delete)
+              if option_to_delete >=1 and option_to_delete <= len(expenses):
+                   expenses.pop(option_to_delete-1)
+              else:
+                   print("Choose between the number of expenses")
          elif (option == 6):
               print("Saved to file")
          elif (option == 7):
