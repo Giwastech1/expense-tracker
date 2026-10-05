@@ -64,6 +64,7 @@ def main():
               option_to_delete = int(input("Enter a number to delete: "))
               if option_to_delete >=1 and option_to_delete <= len(expenses):
                    expenses.pop(option_to_delete-1)
+                   #update json by writing current expense to file
                    with open("expenses.json","w") as file:
                         json.dump(expenses,file,indent=3)
               else:
