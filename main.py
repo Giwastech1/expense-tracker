@@ -1,5 +1,13 @@
+import json
 def main():
     expenses = []
+    try:
+         with open("expenses.json","r") as file:
+              expenses = json.load(file)
+    except FileNotFoundError:
+         expenses = []
+    except json.JSONDecodeError:
+         expenses = []
     #print welcome and options menu
     while True:
          print("You are welcome to expense tracker")
@@ -25,9 +33,12 @@ def main():
               description = input("Write the description of the expense: ")
               expense["description"] = description
 
-              #add to the expenses
+              #add an expense to a list
               expenses.append(expense)
-              #view all expenses
+              #add expenses to json
+              with open("expenses.json","w") as file:
+                   json.dump(expenses,file,indent=3)
+             
          elif (option == 2):
               for index_num,expense in enumerate(expenses,start=1):
                    print(index_num,expense)
@@ -53,11 +64,11 @@ def main():
               option_to_delete = int(input("Enter a number to delete: "))
               if option_to_delete >=1 and option_to_delete <= len(expenses):
                    expenses.pop(option_to_delete-1)
+                   with open("expenses.json","w") as file:
+                        json.dump(expenses,file,indent=3)
               else:
                    print("Choose between the number of expenses")
          elif (option == 6):
-              print("Saved to file")
-         elif (option == 7):
               print("Session terminated")
               break
          else:
