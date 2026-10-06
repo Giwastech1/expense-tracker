@@ -33,7 +33,15 @@ def main():
                    "category": "",
                    "description": ""
               }
-              amount = int(input("Enter the amount of the expense: "))
+              amount_not_valid = True
+              amount = 0
+              while amount_not_valid:
+                   try:
+                        amount = int(input("Enter expense amount: "))
+                        amount_not_valid = False
+                   except ValueError:
+                        print("Enter a valid amount")
+              #amount = int(input("Enter the amount of the expense: "))
               expense["amount"] = amount
               category = input("What category is the expense: ")
               expense["category"] = category
