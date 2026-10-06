@@ -19,7 +19,14 @@ def main():
          print("5. Delete an expense")
          print("6. Exit")
          #options selection and action
-         option = int(input("Enter an option: "))
+         #option = int(input("Enter an option: "))
+         input_not_valid = True
+         while input_not_valid:
+              try:
+                   option = int(input("Enter an option: "))
+                   input_not_valid = False
+              except ValueError:
+                   print("Enter a valid input as an option")
          if (option == 1):
               expense = {
                    "amount": 0,
@@ -31,8 +38,7 @@ def main():
               category = input("What category is the expense: ")
               expense["category"] = category
               description = input("Write the description of the expense: ")
-              expense["description"] = description
-
+              expense["description"] = description                     
               #add an expense to a list
               expenses.append(expense)
               #add expenses to json
