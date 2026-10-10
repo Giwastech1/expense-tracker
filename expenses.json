@@ -1,17 +1,7 @@
 [
    {
-      "amount": 200,
-      "category": "dd",
-      "description": "ll"
-   },
-   {
-      "amount": 200,
+      "amount": 3000,
       "category": "food",
-      "description": "my lunch money"
-   },
-   {
-      "amount": 2999,
-      "category": "miscelleneous",
-      "description": "other expenses"
+      "description": "lunch"
    }
 ]
