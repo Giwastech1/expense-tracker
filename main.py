@@ -79,19 +79,18 @@ def main():
          elif (option == 5): 
               input_not_valid = True
               while input_not_valid:
-               try:
-                    option_to_delete = int(input("Enter a number to delete: "))
-                    input_not_valid = False
-               except ValueError:
-                    print("Enter a valid number")
-                   
-              if option_to_delete >=1 and option_to_delete <= len(expenses):
-                   expenses.pop(option_to_delete-1)
-                   #update json by writing current expense to file
-                   with open("expenses.json","w") as file:
-                        json.dump(expenses,file,indent=3)
-              else:
-                   print("Choose between the number of expenses")
+                   try:
+                        option_to_delete = int(input("Enter a number to delete: "))
+                        if option_to_delete >=1 and option_to_delete <= len(expenses):
+                         expenses.pop(option_to_delete-1)
+                         input_not_valid = False
+                         #update json by writing current expense to file
+                         with open("expenses.json","w") as file:
+                              json.dump(expenses,file,indent=3)
+                        else:
+                             print("Choose between the number of expenses")
+                   except ValueError:
+                        print("Enter a valid number")
          elif (option == 6):
               print("Session terminated")
               break
