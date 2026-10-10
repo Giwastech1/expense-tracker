@@ -76,8 +76,15 @@ def main():
                #print total category and total amount of category
               for category, total in total_category.items():
                    print(f"{category}: {total}")
-         elif (option == 5):
-              option_to_delete = int(input("Enter a number to delete: "))
+         elif (option == 5): 
+              input_not_valid = True
+              while input_not_valid:
+               try:
+                    option_to_delete = int(input("Enter a number to delete: "))
+                    input_not_valid = False
+               except ValueError:
+                    print("Enter a valid number")
+                   
               if option_to_delete >=1 and option_to_delete <= len(expenses):
                    expenses.pop(option_to_delete-1)
                    #update json by writing current expense to file
