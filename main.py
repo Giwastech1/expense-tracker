@@ -39,7 +39,7 @@ def main():
               amount_not_valid = True
               while amount_not_valid:
                    try:
-                        amount = int(input("Enter expense amount: "))
+                        amount = float(input("Enter expense amount: "))
                         if amount <= 0:
                              print("Amount should be more than 0")
                         else:
@@ -49,9 +49,11 @@ def main():
 
               expense["amount"] = amount
               category = input("What category is the expense: ")
-              expense["category"] = category
+              remove_space = category.strip()
+              expense["category"] = remove_space
               description = input("Write the description of the expense: ")
-              expense["description"] = description                     
+              remove_space = description.strip()
+              expense["description"] = remove_space                     
               #add an expense to a list
               expenses.append(expense)
               #success message
