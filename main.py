@@ -10,16 +10,19 @@ def main():
          expenses = []
     #print welcome and options menu
     while True:
-         print("You are welcome to expense tracker")
+         print("=" * 40)
+         print("     PERSONAL EXPENSE TRACKER")
+         print("=" * 40)
          print("Perform an operation by choosing from the options below")
+         print()
          print("1. Add an expense")
          print("2. View all expenses")
          print("3. Calculate total spending")
          print("4. Calculate spending by category")
          print("5. Delete an expense")
          print("6. Exit")
+         print()
          #options selection and action
-         #option = int(input("Enter an option: "))
          input_not_valid = True
          while input_not_valid:
               try:
@@ -51,6 +54,9 @@ def main():
               expense["description"] = description                     
               #add an expense to a list
               expenses.append(expense)
+              #success message
+              print("Expense added successfully")
+              print()
               #add expenses to json
               with open("expenses.json","w") as file:
                    json.dump(expenses,file,indent=3)
@@ -58,11 +64,14 @@ def main():
          elif (option == 2):
               for index_num,expense in enumerate(expenses,start=1):
                    print(index_num,expense)
+                   print()
                    #calculate all spending
          elif (option == 3):
               amount = list(map(lambda expense:expense["amount"],expenses))
               total_expense = sum(amount)
               print(f"The total amount of the expense is {total_expense}")
+              print()
+
          elif (option == 4):
               total_category = {}
               for expense in expenses:
@@ -76,6 +85,8 @@ def main():
                #print total category and total amount of category
               for category, total in total_category.items():
                    print(f"{category}: {total}")
+                   print()
+
          elif (option == 5): 
               input_not_valid = True
               while input_not_valid:
@@ -83,6 +94,8 @@ def main():
                         option_to_delete = int(input("Enter a number to delete: "))
                         if option_to_delete >=1 and option_to_delete <= len(expenses):
                          expenses.pop(option_to_delete-1)
+                         print("Deleted successfuly")
+                         print()
                          input_not_valid = False
                          #update json by writing current expense to file
                          with open("expenses.json","w") as file:
