@@ -31,41 +31,17 @@ def main():
               except ValueError:
                    print("Enter a valid input as an option")
          if (option == 1):
-              expense = {
-                   "amount": 0,
-                   "category": "",
-                   "description": ""
-              }
-              amount_not_valid = True
-              while amount_not_valid:
-                   try:
-                        amount = float(input("Enter expense amount: "))
-                        if amount <= 0:
-                             print("Amount should be more than 0")
-                        else:
-                             amount_not_valid = False
-                   except ValueError:
-                        print("Enter a valid amount")
-
-              expense["amount"] = amount
-              category = input("What category is the expense: ")
-              remove_space = category.strip()
-              expense["category"] = remove_space
-              description = input("Write the description of the expense: ")
-              remove_space = description.strip()
-              expense["description"] = remove_space                     
+              expense = add_expense()
               #add an expense to a list
               expenses.append(expense)
-              #success message
+               #success message
               print("Expense added successfully")
               print()
               #add expenses to json
-              with open("expenses.json","w") as file:
-                   json.dump(expenses,file,indent=3)
-             
+              save_to_json(expenses)
+
          elif (option == 2):
-              for index_num,expense in enumerate(expenses,start=1):
-                   print(index_num,expense)
+                   view_expenses(expenses)
                    print()
                    #calculate all spending
          elif (option == 3):
@@ -100,8 +76,7 @@ def main():
                          print()
                          input_not_valid = False
                          #update json by writing current expense to file
-                         with open("expenses.json","w") as file:
-                              json.dump(expenses,file,indent=3)
+                         save_to_json(expenses)
                         else:
                              print("Choose between the number of expenses")
                    except ValueError:
@@ -111,5 +86,46 @@ def main():
               break
          else:
               print("Invalid input")
+
+#function to add an expense
+def add_expense():
+     expense = {
+               "amount": 0,
+               "category": "",
+               "description": ""
+               }
+     amount_not_valid = True
+     while amount_not_valid:
+          try:
+               amount = float(input("Enter expense amount: "))
+               if amount <= 0:
+                    print("Amount should be greater than 0")
+               else:
+                    amount_not_valid = False
+          except ValueError:
+               print("Enter a valid amount")
+     expense["amount"] = amount
+     category = input("What category is the expense: ")
+     remove_space = category.strip()
+     expense["category"] = remove_space
+     description = input("Write the description of the expense: ")
+     remove_space = description.strip()
+     expense["description"] = remove_space
+     return expense
+
+
+#function to view all expenses
+def view_expenses(expenses):
+     for index_number,expense in enumerate(expenses,start=1):
+          print(index_number,expense)
+
+#function to calculate total expense
+
+
+#function to save to json
+def save_to_json(expenses):
+     with open("expenses.json","w") as file:
+          json.dump(expenses,file,indent=3)
+
 
 main()
